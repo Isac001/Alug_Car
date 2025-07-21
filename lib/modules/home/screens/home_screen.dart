@@ -1,5 +1,7 @@
+import 'package:alug_car/modules/client/screens/client_register_screen.dart';
+import 'package:alug_car/modules/client/screens/client_list_screen.dart';
+import 'package:alug_car/modules/home/utils/home_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:alug_car/utils/list_cars.dart';
 
 // Define a stateful widget for the home screen.
 class HomeScreen extends StatefulWidget {
@@ -13,6 +15,20 @@ class HomeScreen extends StatefulWidget {
 
 // Define the state class for the HomeScreen widget.
 class _HomeScreenState extends State<HomeScreen> {
+  
+  void showClientRegisterSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+      ),
+      builder: (BuildContext context) {
+        return const ClientRegisterScreen();
+      },
+    );
+  }
+
   // Create a GlobalKey to control the Scaffold, mainly for opening the drawer.
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -106,7 +122,9 @@ class _HomeScreenState extends State<HomeScreen> {
             // Define the icon, size, and color.
             icon: const Icon(Icons.person, size: 32, color: Colors.black54),
             // The action to perform on press (currently empty).
-            onPressed: () {},
+            onPressed: () {
+              showClientRegisterSheet();
+            },
           ),
         ],
       ),
@@ -328,7 +346,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // The child is a Container for custom styling.
       child: Container(
         // Set the background color of the drawer.
-        color: Colors.black,
+        color: Colors.white,
         // Add padding inside the drawer.
         child: Padding(
           // Apply padding on all sides.
@@ -343,7 +361,10 @@ class _HomeScreenState extends State<HomeScreen> {
               const Text(
                 'Menu',
                 // Style the menu title.
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
               ),
               // Add vertical space.
               SizedBox(
@@ -406,7 +427,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold),
                 ),
                 // The action to perform on tap.
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ClientListScreen(),
+                    ),
+                  );
+                },
               ),
               // Another menu item.
               ListTile(

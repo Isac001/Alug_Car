@@ -1,4 +1,4 @@
-import 'package:alug_car/screens/home_screen.dart';
+import 'package:alug_car/modules/home/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 // The main function, which is the entry point for the application.
@@ -21,12 +21,12 @@ class MyApp extends StatelessWidget {
       // Define the theme data for the application.
       theme: ThemeData(
         // Create a color scheme from a single seed color.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
         // Enable the Material 3 design system.
         useMaterial3: true,
       ),
       // Set the default screen to be displayed when the app starts.
-      home: const HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
